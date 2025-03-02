@@ -163,10 +163,6 @@ type GetBlockResult struct {
 
 	// The number of blocks beneath this block.
 	BlockHeight *uint64 `json:"blockHeight"`
-
-	// The number of reward partitions.
-	// Present for the first block in the epoch otherwise Nil.
-	NumRewardPartitions *uint64 `json:"numRewardPartitions"`
 }
 
 func (cl *Client) GetParsedBlockWithOpts(
@@ -234,10 +230,6 @@ type GetParsedBlockResult struct {
 
 	// The number of blocks beneath this block.
 	BlockHeight *uint64 `json:"blockHeight"`
-
-	// The number of reward partitions.
-	// Present for the first block in the epoch otherwise Nil.
-	NumRewardPartitions *uint64 `json:"numRewardPartitions"`
 }
 
 type ParsedTransactionWithMeta struct {

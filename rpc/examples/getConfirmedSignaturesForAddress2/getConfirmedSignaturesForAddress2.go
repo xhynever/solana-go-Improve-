@@ -23,10 +23,10 @@ import (
 )
 
 func main() {
-	endpoint := rpc.TestNet_RPC
+	endpoint := rpc.DevNet_RPC
 	client := rpc.New(endpoint)
 
-	pubKey := solana.MustPublicKeyFromBase58("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt") // serum token
+	pubKey := solana.MustPublicKeyFromBase58("C7vP3XKBJSyJaZiZdEAQFAyoNA9UVpidiEDEREmABhAp") // serum token
 	{
 		// deprecated and is going to be removed in solana-core v1.8
 		out, err := client.GetConfirmedSignaturesForAddress2(
@@ -38,6 +38,6 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		spew.Dump(out)
+		spew.Dump(out[0])
 	}
 }

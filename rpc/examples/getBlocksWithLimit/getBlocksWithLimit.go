@@ -16,6 +16,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/davecgh/go-spew/spew"
 	"github.com/gagliardetto/solana-go/rpc"
@@ -32,11 +33,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+	fmt.Println(example)
 	limit := uint64(4)
+
 	out, err := client.GetBlocksWithLimit(
 		context.TODO(),
-		uint64(example.Context.Slot-10),
+		uint64(example.Context.Slot-3),
 		limit,
 		rpc.CommitmentFinalized,
 	)
@@ -44,4 +46,5 @@ func main() {
 		panic(err)
 	}
 	spew.Dump(out)
+
 }

@@ -25,11 +25,11 @@ import (
 )
 
 func main() {
-	endpoint := rpc.MainNetBeta_RPC
+	endpoint := rpc.DevNet_RPC
 	client := rpc.New(endpoint)
 
 	{
-		pubKey := solana.MustPublicKeyFromBase58("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt") // serum token
+		pubKey := solana.MustPublicKeyFromBase58("BEjywsDrpEjbs2SoZxLFiApgEk7eEcbj2KLb3FwZ9iHD") // serum token
 		// basic usage
 		resp, err := client.GetAccountInfo(
 			context.TODO(),
@@ -53,62 +53,62 @@ func main() {
 		// mint.Decimals = 6
 		// ... which means that the supply is 9998022451.607088
 	}
-	{
-		// Or you can use `GetAccountDataIn` which does all of the above in one call:
-		pubKey := solana.MustPublicKeyFromBase58("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt") // serum token
-		var mint token.Mint
-		// Get the account, and decode its data into the provided mint object:
-		err := client.GetAccountDataInto(
-			context.TODO(),
-			pubKey,
-			&mint,
-		)
-		if err != nil {
-			panic(err)
-		}
-		spew.Dump(mint)
-	}
-	{
-		// // Or you can use `GetAccountDataBorsh` which does all of the above in one call but for borsh-encoded data:
-		// var metadata token_metadata.Metadata
-		// // Get the account, and decode its data into the provided metadata object:
-		// err := client.GetAccountDataBorsh(
-		//   context.TODO(),
-		//   pubKey,
-		//   &metadata,
-		// )
-		// if err != nil {
-		//   panic(err)
-		// }
-		// spew.Dump(metadata)
-	}
-	{
-		pubKey := solana.MustPublicKeyFromBase58("4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R") // raydium token
-		// advanced usage
-		resp, err := client.GetAccountInfoWithOpts(
-			context.TODO(),
-			pubKey,
-			// You can specify more options here:
-			&rpc.GetAccountInfoOpts{
-				Encoding:   solana.EncodingBase64Zstd,
-				Commitment: rpc.CommitmentFinalized,
-				// You can get just a part of the account data by specify a DataSlice:
-				// DataSlice: &rpc.DataSlice{
-				// 	Offset: pointer.ToUint64(0),
-				// 	Length: pointer.ToUint64(1024),
-				// },
-			},
-		)
-		if err != nil {
-			panic(err)
-		}
-		spew.Dump(resp)
+	// 	{
+	// 		// Or you can use `GetAccountDataIn` which does all of the above in one call:
+	// 		pubKey := solana.MustPublicKeyFromBase58("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt") // serum token
+	// 		var mint token.Mint
+	// 		// Get the account, and decode its data into the provided mint object:
+	// 		err := client.GetAccountDataInto(
+	// 			context.TODO(),
+	// 			pubKey,
+	// 			&mint,
+	// 		)
+	// 		if err != nil {
+	// 			panic(err)
+	// 		}
+	// 		spew.Dump(mint)
+	// 	}
+	// 	{
+	// 		// // Or you can use `GetAccountDataBorsh` which does all of the above in one call but for borsh-encoded data:
+	// 		// var metadata token_metadata.Metadata
+	// 		// // Get the account, and decode its data into the provided metadata object:
+	// 		// err := client.GetAccountDataBorsh(
+	// 		//   context.TODO(),
+	// 		//   pubKey,
+	// 		//   &metadata,
+	// 		// )
+	// 		// if err != nil {
+	// 		//   panic(err)
+	// 		// }
+	// 		// spew.Dump(metadata)
+	// 	}
+	// 	{
+	// 		pubKey := solana.MustPublicKeyFromBase58("7WH4GMVQGhmAbei82jYTJvTMVGpwvL8jmFvQB5EEBRMK") // raydium token
+	// 		// advanced usage
+	// 		resp, err := client.GetAccountInfoWithOpts(
+	// 			context.TODO(),
+	// 			pubKey,
+	// 			// You can specify more options here:
+	// 			&rpc.GetAccountInfoOpts{
+	// 				Encoding:   solana.EncodingBase64Zstd,
+	// 				Commitment: rpc.CommitmentFinalized,
+	// 				// You can get just a part of the account data by specify a DataSlice:
+	// 				// DataSlice: &rpc.DataSlice{
+	// 				// 	Offset: pointer.ToUint64(0),
+	// 				// 	Length: pointer.ToUint64(1024),
+	// 				// },
+	// 			},
+	// 		)
+	// 		if err != nil {
+	// 			panic(err)
+	// 		}
+	// 		spew.Dump(resp)
 
-		var mint token.Mint
-		err = bin.NewBinDecoder(resp.Value.Data.GetBinary()).Decode(&mint)
-		if err != nil {
-			panic(err)
-		}
-		spew.Dump(mint)
-	}
+	//		var mint token.Mint
+	//		err = bin.NewBinDecoder(resp.Value.Data.GetBinary()).Decode(&mint)
+	//		if err != nil {
+	//			panic(err)
+	//		}
+	//		spew.Dump(mint)
+	//	}
 }

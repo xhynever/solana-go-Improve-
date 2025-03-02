@@ -17,9 +17,7 @@ package main
 import (
 	"context"
 
-	"github.com/AlekSi/pointer"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/gagliardetto/solana-go"
 	"github.com/gagliardetto/solana-go/rpc"
 )
 
@@ -43,26 +41,31 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		spew.Dump(out)
+
+		spew.Dump(len(out.Transactions))
+		spew.Dump(out.ParentSlot)
+		spew.Dump(example.Context.Slot)
+		spew.Dump(out.BlockTime.Time())
+		// spew.Dump(out)
 	}
-	{
-		slot := uint64(example.Context.Slot)
-		out, err := client.GetConfirmedBlockWithOpts(
-			context.TODO(),
-			slot,
-			// You can specify more options here:
-			&rpc.GetConfirmedBlockOpts{
-				Encoding:   solana.EncodingBase64,
-				Commitment: rpc.CommitmentFinalized,
-				// Get only signatures:
-				TransactionDetails: rpc.TransactionDetailsSignatures,
-				// Exclude rewards:
-				Rewards: pointer.ToBool(false),
-			},
-		)
-		if err != nil {
-			panic(err)
-		}
-		spew.Dump(out)
-	}
+	// {
+	// 	slot := uint64(example.Context.Slot)
+	// 	out, err := client.GetConfirmedBlockWithOpts(
+	// 		context.TODO(),
+	// 		slot,
+	// 		// You can specify more options here:
+	// 		&rpc.GetConfirmedBlockOpts{
+	// 			Encoding:   solana.EncodingBase64,
+	// 			Commitment: rpc.CommitmentFinalized,
+	// 			// Get only signatures:
+	// 			TransactionDetails: rpc.TransactionDetailsSignatures,
+	// 			// Exclude rewards:
+	// 			Rewards: pointer.ToBool(false),
+	// 		},
+	// 	)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// 	spew.Dump(out)
+	// }
 }

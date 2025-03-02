@@ -83,7 +83,8 @@ func (cl *Client) GetConfirmedBlockWithOpts(
 		}
 	}
 
-	err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlock", params)
+	// err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlock", params)
+	err = cl.rpcClient.CallForInto(ctx, &out, "getBlock", params)
 	return
 }
 
@@ -110,7 +111,8 @@ func (cl *Client) GetConfirmedBlocks(
 		params = append(params, M{"commitment": string(commitment)})
 	}
 
-	err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlocks", params)
+	err = cl.rpcClient.CallForInto(ctx, &out, "getBlocks", params)
+	// err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlocks", params)
 	return
 }
 
@@ -130,7 +132,8 @@ func (cl *Client) GetConfirmedBlocksWithLimit(
 		params = append(params, M{"commitment": string(commitment)})
 	}
 
-	err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlocksWithLimit", params)
+	// err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedBlocksWithLimit", params)
+	err = cl.rpcClient.CallForInto(ctx, &out, "getBlocksWithLimit", params)
 	return
 }
 
@@ -166,7 +169,8 @@ func (cl *Client) GetConfirmedSignaturesForAddress2(
 		}
 	}
 
-	err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedSignaturesForAddress2", params)
+	// err = cl.rpcClient.CallForInto(ctx, &out, "getConfirmedSignaturesForAddress2", params)
+	err = cl.rpcClient.CallForInto(ctx, &out, "getSignaturesForAddress", params)
 	return
 }
 

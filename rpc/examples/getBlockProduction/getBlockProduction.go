@@ -32,20 +32,20 @@ func main() {
 		}
 		spew.Dump(out)
 	}
-	{
-		out, err := client.GetBlockProductionWithOpts(
-			context.TODO(),
-			&rpc.GetBlockProductionOpts{
-				Commitment: rpc.CommitmentFinalized,
-				// Range: &rpc.SlotRangeRequest{
-				// 	FirstSlot: XXXXXX,
-				// 	Identity:  solana.MustPublicKeyFromBase58("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-				// },
-			},
-		)
-		if err != nil {
-			panic(err)
-		}
-		spew.Dump(out)
-	}
+	// {
+	// 	out, err := client.GetBlockProductionWithOpts(
+	// 		context.TODO(),
+	// 		&rpc.GetBlockProductionOpts{
+	// 			Commitment: rpc.CommitmentFinalized,
+	// 			// Range: &rpc.SlotRangeRequest{
+	// 			// 	FirstSlot: XXXXXX,
+	// 			// 	Identity:  solana.MustPublicKeyFromBase58("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+	// 			// },
+	// 		},
+	// 	)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// 	spew.Dump(out)
+	// }
 }
